@@ -3,3 +3,5 @@ spring:
     config:
       uri: http://127.0.01:8012
       name: ecommerce
+  profiles:
+    active: dev
