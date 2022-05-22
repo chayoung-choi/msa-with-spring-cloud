@@ -1,0 +1,11 @@
+encrypt:
+#  key: alakwn0293nalvknanvi034ina3laknvalv
+  key-store:
+    location: file:///${user.home}\development\springboot\keystore\apiEncryptionKey.jks
+    password: test1234!
+    alias: apiEncryptionKey
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888  # config-server
+      name: user-service

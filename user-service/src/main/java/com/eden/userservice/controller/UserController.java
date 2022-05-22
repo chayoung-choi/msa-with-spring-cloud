@@ -6,7 +6,7 @@ import com.eden.userservice.service.UserService;
 import com.eden.userservice.vo.Greeting;
 import com.eden.userservice.vo.RequestUser;
 import com.eden.userservice.vo.ResponseUser;
-import org.bouncycastle.math.raw.Mod;
+import org.bouncycastle.util.Iterable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class UserController {
 
   @GetMapping("/users")
   public ResponseEntity<List<ResponseUser>> getUsers() {
-    Iterable<UserEntity> userList = userService.getUserByAll();
+    Iterable<UserEntity> userList = (Iterable<UserEntity>) userService.getUserByAll();
     List<ResponseUser> result = new ArrayList<>();
 
     userList.forEach(v -> {
