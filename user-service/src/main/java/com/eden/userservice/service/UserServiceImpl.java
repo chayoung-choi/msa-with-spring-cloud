@@ -1,5 +1,6 @@
 package com.eden.userservice.service;
 
+import com.eden.userservice.client.OrderServiceClient;
 import com.eden.userservice.dto.UserDto;
 import com.eden.userservice.jpa.UserEntity;
 import com.eden.userservice.jpa.UserRepository;
@@ -30,15 +31,18 @@ public class UserServiceImpl implements UserService {
   BCryptPasswordEncoder passwordEncoder;
 
   Environment env;
-  RestTemplate restTemplate;
+//  RestTemplate restTemplate;
+  OrderServiceClient orderServiceClient;
 
   @Autowired
   public UserServiceImpl(UserRepository userRepository,
                          BCryptPasswordEncoder passwordEncoder,
                          Environment env,
-                         RestTemplate restTemplate) {
+                         OrderServiceClient orderServiceClient) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
+    this.env = env;
+    this.orderServiceClient = orderServiceClient;
   }
 
   @Override
@@ -78,14 +82,16 @@ public class UserServiceImpl implements UserService {
 
 //    List<ResponseOrder> orders = new ArrayList<>();
     /* Using as rest template */
-    String orderUrl = String.format(env.getProperty("order_service.url"), userId);
-    ResponseEntity<List<ResponseOrder>> orderListResponse =  restTemplate.exchange(orderUrl, HttpMethod.GET, null,
-            new ParameterizedTypeReference<List<ResponseOrder>>() {
-    });
+//    String orderUrl = String.format(env.getProperty("order_service.url"), userId);
+//    ResponseEntity<List<ResponseOrder>> orderListResponse =  restTemplate.exchange(orderUrl, HttpMethod.GET, null,
+//            new ParameterizedTypeReference<List<ResponseOrder>>() {
+//    });
+//    List<ResponseOrder> ordersList = orderListResponse.getBody();
 
-    List<ResponseOrder> ordersList = orderListResponse.getBody();
-
+    /* Using as feign client */
+    List<ResponseOrder> ordersList = orderServiceClient.getOrders(userId);
     userDto.setOrders(ordersList);
+
     return userDto;
   }
 

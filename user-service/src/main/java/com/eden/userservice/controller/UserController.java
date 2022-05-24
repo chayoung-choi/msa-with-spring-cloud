@@ -6,6 +6,7 @@ import com.eden.userservice.service.UserService;
 import com.eden.userservice.vo.Greeting;
 import com.eden.userservice.vo.RequestUser;
 import com.eden.userservice.vo.ResponseUser;
+import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.util.Iterable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@Slf4j
 public class UserController {
   private final Environment env;
   private UserService userService;
@@ -45,6 +47,7 @@ public class UserController {
 
   @GetMapping("/welcome")
   public String welcome() {
+    log.info("welcome ------------------");
 //    return env.getProperty("greeting.message");
     return greeting.getMessage();
   }
