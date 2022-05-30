@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.persistence.EntityExistsException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -61,6 +62,10 @@ public class UserServiceImpl implements UserService {
   public UserDto createUser(UserDto userDto) {
     userDto.setUserId(UUID.randomUUID().toString());
 
+    UserEntity checkUser = userRepository.findByEmail(userDto.getEmail());
+    if (checkUser != null) {
+      throw new EntityExistsException(userDto.getEmail());
+    }
     ModelMapper mapper = new ModelMapper();
     mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     UserEntity userEntity = mapper.map(userDto, UserEntity.class);

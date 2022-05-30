@@ -7,7 +7,6 @@ import com.eden.userservice.vo.Greeting;
 import com.eden.userservice.vo.RequestUser;
 import com.eden.userservice.vo.ResponseUser;
 import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.util.Iterable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,6 @@ public class UserController {
 
   @GetMapping("/welcome")
   public String welcome() {
-    log.info("welcome ------------------");
-//    return env.getProperty("greeting.message");
     return greeting.getMessage();
   }
 
@@ -67,7 +64,7 @@ public class UserController {
 
   @GetMapping("/users")
   public ResponseEntity<List<ResponseUser>> getUsers() {
-    Iterable<UserEntity> userList = (Iterable<UserEntity>) userService.getUserByAll();
+    Iterable<UserEntity> userList = userService.getUserByAll();
     List<ResponseUser> result = new ArrayList<>();
 
     userList.forEach(v -> {
