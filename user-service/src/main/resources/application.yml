@@ -34,7 +34,8 @@ greeting:
 
 logging:
   level:
-    com.eden.userservice: DEBUG
+#    com.eden.userservice: DEBUG
+    com.eden.userservice.client: DEBUG
 
 management:
   endpoints:
