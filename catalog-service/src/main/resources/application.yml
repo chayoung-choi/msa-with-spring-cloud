@@ -20,6 +20,9 @@ spring:
     generate-ddl: true
     database: h2
     defer-datasource-initialization: true
+  kafka:
+    consumer:
+      group-id: consumer-group-id
 
 eureka:
   instance:

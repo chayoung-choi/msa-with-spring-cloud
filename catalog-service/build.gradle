@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.6'
+    id 'org.springframework.boot' version '2.5.11'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'com.eden'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 configurations {
     compileOnly {
@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2021.0.1")
+    set('springCloudVersion', "2020.0.5")
 }
 
 dependencies {
