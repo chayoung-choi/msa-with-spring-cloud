@@ -16,7 +16,7 @@ spring:
         native:
 #          search-locations: file://${user.home}/development/springboot/git-local-repo # home
 #          search-locations: file://${user.home}/Development/springboot/msa-with-spring-cloud-config # dk
-          search-locations: file:///${user.home}/development/springboot/msa-with-spring-cloud-config # home_win
+          search-locations: file:///E:\Development\springboot\/msa-with-spring-cloud-config # home_win
         git:
 #          uri: file:///Users/cyoung90/development/springboot/git-local-repo
           uri: https://github.com/chayoung-choi/msa-with-spring-cloud-config
