@@ -20,7 +20,7 @@ spring:
         git:
 #          uri: file:///Users/cyoung90/development/springboot/git-local-repo
           uri: https://github.com/chayoung-choi/msa-with-spring-cloud-config
-#          username: [username]
+#          username: [username] #private일 경우
 #          password: [password]
 management:
   endpoints:
